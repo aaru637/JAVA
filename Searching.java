@@ -59,9 +59,9 @@ public class Searching {
 			}
 			
 			else if(arr[mid] < value)
-				end = mid-1 ;
+				start = mid+1 ;
 			else 
-				start = mid + 1 ;
+				end = mid - 1 ;
 		}
 		if(flag == 0)
 			System.out.println(value + " not Found in the Array.");
