@@ -1,5 +1,3 @@
-package com.dk.ds;
-
 import java.util.Arrays;
 
 public class Array {
@@ -176,7 +174,7 @@ public class Array {
 		else
 		{
 			int arr1[] = EXPANDARRAY(arr);
-			for(int i = size - 1 ; i > pos ; i--)
+			for(int i = size - 1; i >= pos ; i--)
 				arr1[i + 1] = arr1[i];
 			arr1[pos] = value;
 			size++;
@@ -196,23 +194,115 @@ public class Array {
 	}
 	
 	// 12. Delete Element at Any Position in UnSorted Array
-	public static void DELETEATANYUNSORTED(int[] arr, int pos, int size)
+	public static int DELETEATANYUNSORTED(int[] arr, int pos, int size)
 	{
 		if(pos < 0)
 			throw new IllegalArgumentException("Position can't be negative");
 		else
 		{
-			for(int i = pos ; i < size ; i++)
+			for(int i = pos ; i < size - 1; i++)
 				arr[i] = arr[i + 1];
-			size--;
 		}
+		size--;
+		return size;
 	}
 	
 	// 13. Delete Element at Begining in UnSorted Array
-	public static void DELETEATBEGINUNSORTED(int[] arr, int size)
+	public static int DELETEATBEGINUNSORTED(int[] arr, int size)
 	{
-		for(int i = 0 ; i < size ; i++)
+		for(int i = 0 ; i < size - 1; i++)
 			arr[i] = arr[i + 1];
 		size--;
+		return size;
+	}
+
+	// 14. Insert at Element in Sorted Array.
+	public static int[] INSERTSORTED(int[] arr, int size, int value)
+	{
+		int arr1[] = EXPANDARRAY(arr);
+		int i ;
+		for(i = size - 1; (i >= 0 && arr1[i] > value); i--)
+		{
+			arr1[i + 1] = arr1[i];
+		}
+		arr1[i+ 1] = value;
+		size++;
+		return arr1;
+	}
+
+	// 15. Delete ar Element in Sorted Array
+	public static int DELETESORTED(int[] arr, int size, int value)
+	{
+		int pos = BINARYSEARCH(arr, value);
+
+		for(int i = pos ; i < size - 1 ; i++)
+		{
+			arr[i] = arr[i + 1];
+		}
+		size--;
+		return size;
+	}
+
+	// 16. Rotate an array left at n times
+	public static void ROTATELEFTARRAY(int[] arr, int size, int n)
+	{
+		// arr[] = {1, 2, 3, 4, 5, 6}
+			//      0, 1, 2, 3, 4, 5
+		// size = 6, n = 3
+		int start = 0 , end = size - 1 ; // end = 5
+		while(n > 0) // n = 3, 2, 1
+		{
+			int temp = arr[start] ; // temp = 1, 2, 3
+			arr[start] = arr[end - n + 1] ; // arr[0, 1, 2] = arr[3, 4, 5] => 4, 5, 6
+			arr[end-n + 1] = temp ; // arr[3, 4, 5] = 1, 2, 3
+			start++; // start = 1, 2, 3
+			n--; // n = 2, 1, 0
+		}
+	}
+
+	// 17. Rotate an array right at n times
+	public static void ROTATERIGHTARRAY(int[] arr, int size, int n)
+	{
+		n = n % size ;
+		REVERSEARRAY(arr, size - n, size, size) ;
+		REVERSEARRAY(arr, 0, size-n, size) ;
+		REVERSEARRAY(arr, 0, size, size) ;
+	}
+
+	// 18 . Return Reverse an Array
+	public static void REVERSEARRAY(int[] arr, int low, int high, int size)
+	{
+		int start = low , end = high - 1;
+		while(start < end)
+		{
+			int temp1 = arr[start] ;
+			arr[start] = arr[end] ;
+			arr[end] = temp1 ;
+			start++;
+			end--;
+		}
+	}
+
+	// 19. Generate all SubArrays of a given array
+	public static void SUBARRAY(int[] arr, int start, int end)
+	{
+		if(end == arr.length)
+		{
+			return ;
+		}
+		else if(start > end)
+		{
+			SUBARRAY(arr, 0, end + 1) ;
+		}
+		else
+		{
+			System.out.print("[");
+			for(int i = start ; i < end ; i++)
+			{
+				System.out.print(arr[i] + ", ");
+			}
+			System.out.print(arr[end] + "], ") ;
+			SUBARRAY(arr, start + 1, end);
+		}
 	}
 }
