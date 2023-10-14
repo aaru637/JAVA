@@ -2,12 +2,10 @@ package com.dk.algoDaily;
 
 public class Day18_SumOfAllPrimes {
     private static boolean findPrime(int value) {
-        int copy = value;
-        for (int i = 2; i < value; i++) {
-            if (copy % i == 0) {
+        for (int i = 2; i <= Math.sqrt(value); i++) {
+            if (value % i == 0) {
                 return false;
             }
-            value /= 2;
         }
         return true;
     }
