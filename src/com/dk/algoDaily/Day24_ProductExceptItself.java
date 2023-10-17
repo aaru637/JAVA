@@ -1,6 +1,7 @@
 package com.dk.algoDaily;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Day24_ProductExceptItself {
@@ -18,7 +19,7 @@ public class Day24_ProductExceptItself {
     }
 
     public static void main(String... args) {
-        List<Integer> arr = new ArrayList<>(List.of(1, 2, 4, 16));
+        List<Integer> arr = new ArrayList<>(Arrays.asList(1, 2, 4, 16));
         productExceptItself(arr);
         System.out.println(arr);
     }

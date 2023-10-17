@@ -1,6 +1,7 @@
 package com.dk.algoDaily;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Day23_LeastMissingPositiveNumber {
@@ -21,7 +22,7 @@ public class Day23_LeastMissingPositiveNumber {
     }
 
     public static void main(String... args) {
-        List<Integer> arr = new ArrayList<>(List.of(-1, -2, -3));
+        List<Integer> arr = new ArrayList<>(Arrays.asList(-1, -2, -3));
         System.out.println(leastMissingPositiveNumber(arr));
     }
 }

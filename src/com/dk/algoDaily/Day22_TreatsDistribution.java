@@ -1,6 +1,7 @@
 package com.dk.algoDaily;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Day22_TreatsDistribution {
@@ -30,7 +31,7 @@ public class Day22_TreatsDistribution {
     }
 
     public static void main(String... args) {
-        List<Integer> arr = new ArrayList<>(List.of(1, 1, 2, 4));
+        List<Integer> arr = new ArrayList<>(Arrays.asList(1, 1, 2, 4));
         System.out.println(treatDistribution(arr));
     }
 }

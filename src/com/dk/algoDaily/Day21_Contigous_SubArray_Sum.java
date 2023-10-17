@@ -1,6 +1,7 @@
 package com.dk.algoDaily;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Day21_Contigous_SubArray_Sum {
@@ -27,7 +28,7 @@ public class Day21_Contigous_SubArray_Sum {
     }
 
     public static void main(String... args) {
-        List<Integer> arr = new ArrayList<>(List.of(1, 1, 2, 3, -2, 2));
+        List<Integer> arr = new ArrayList<>(Arrays.asList(1, 1, 2, 3, -2, 2));
         int sumValue = 2;
         System.out.println(contigousSubArraysSum(arr, sumValue));
     }
