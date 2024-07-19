@@ -16,8 +16,8 @@ import com.dk.algoTutor.arrays.ProblemServiceMethods;
 public class Problem5_FindFirstLastPositionSortedArray {
 
     public static void main(String[] args) {
-        int[] arr = {5, 5, 7, 7, 8, 8};
-        int target = 5;
+        int[] arr = { 1, 1, 3, 8, 8 };
+        int target = 0;
         int[] result = ProblemServiceMethods.findFirstLastPosition(arr, target);
         System.out.println(result[0] + " " + result[1]);
     }
