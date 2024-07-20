@@ -1,5 +1,7 @@
 package com.dk.algoTutor.arrays;
 
+import java.util.Arrays;
+
 public class ProblemServiceMethods {
 
     /*
@@ -200,4 +202,118 @@ public class ProblemServiceMethods {
         return false;
     }
 
+    /*
+     * 11. Power of x, n
+     */
+    public static float power(float base, int exponent) {
+        float result = 1f;
+        for (int i = 1; i <= exponent; i++) {
+            result *= base;
+        }
+        return result;
+    }
+
+    /*
+     * 12. Find a Peak Element
+     */
+    public static int[] findPeakElement(int[][] input) {
+        int start = 0, end = input[0].length - 1;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            int rowMax = 0;
+            for (int i = 0; i < input.length; i++) {
+                if (input[i][mid] > input[rowMax][mid]) {
+                    rowMax = i;
+                }
+            }
+            boolean isLeftSmaller = (mid == 0 || input[rowMax][mid] > input[rowMax][mid - 1]);
+            boolean isRightSmaller = (mid == input[0].length - 1 || input[rowMax][mid] > input[rowMax][mid + 1]);
+
+            if (isLeftSmaller && isRightSmaller) {
+                return new int[] { rowMax, mid };
+            } else if (!isLeftSmaller) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return new int[] { -1, -1 };
+    }
+
+    /*
+     * Additional Problem -> Find the element which helds the given position in the
+     * final array of two sorted arrays.
+     */
+    public static int findKthPositionalElement(int[] first, int[] second, int target) {
+        int firstLength = 0, secondLength = 0;
+        int element = 0;
+        int[] temp = new int[first.length + second.length];
+        int tempK = 0;
+        while (target >= 0) {
+            if (firstLength <= first.length - 1 && secondLength <= second.length - 1) {
+                if (first[firstLength] <= second[secondLength]) {
+                    element = first[firstLength];
+                    temp[tempK++] = first[firstLength];
+                    firstLength++;
+                } else if (secondLength <= second.length - 1) {
+                    element = second[secondLength];
+                    temp[tempK++] = second[secondLength];
+                    secondLength++;
+                }
+            } else {
+                if (firstLength <= first.length - 1) {
+                    element = first[firstLength];
+                    temp[tempK++] = first[firstLength];
+                    firstLength++;
+                } else if (secondLength <= second.length - 1) {
+                    element = second[secondLength];
+                    temp[tempK++] = second[secondLength];
+                    secondLength++;
+                }
+            }
+            target--;
+        }
+        System.out.println(Arrays.toString(temp));
+        return element;
+    }
+
+    public static int findKthElement(int[] first, int[] second, int target) {
+        int m = first.length, n = second.length;
+        if (target > (m + n) || target < 0) {
+            return -1;
+        }
+        int i = 0, j = 0, count = 0, result = 0;
+
+        while (i < m && j < n) {
+            if (first[i] < second[j]) {
+                result = first[i];
+                i++;
+            } else {
+                result = second[j];
+                j++;
+            }
+            if (count == target) {
+                return result;
+            }
+            count++;
+        }
+        while (i < m) {
+            result = first[i];
+            i++;
+            if (count == target) {
+                return result;
+            }
+            count++;
+        }
+
+        while (j < n) {
+            result = second[j];
+            j++;
+            if (count == target) {
+                return result;
+            }
+            count++;
+        }
+        return result;
+    }
 }
